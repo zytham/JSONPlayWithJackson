@@ -33,14 +33,15 @@ public class JSONStringToJavaObject {
 			"            \"designation\": \"Senior Engineer\"\n" + "        }";
 
 	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-		System.out.println("\nEnter your choice: ");
 		System.out.println("\n1. JSON String to Java Object : ");
 		System.out.println("\n2. JAVA Object to JSON String : ");
+		System.out.println("\nEnter your choice: ");
+		Scanner sc = new Scanner(System.in);
 		int choice = sc.nextInt();
+		
 		switch (choice) {
 		case 1:
-			convertJsonToJavaObject();
+			convertJsonStringToJavaObject();
 			break;
 		case 2:
 			convertJavaObjectToJSONString();
@@ -50,7 +51,7 @@ public class JSONStringToJavaObject {
 		sc.close();
 	}
 
-	private static void convertJsonToJavaObject() {
+	private static void convertJsonStringToJavaObject() {
 		ObjectMapper objectMapper = new ObjectMapper();
 		/*
 		 * DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES added to deal with JSONs
