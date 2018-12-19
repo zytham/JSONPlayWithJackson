@@ -1,0 +1,3078 @@
+{
+  "ruleGroup": {
+    "groupName": "WalmartReturnRules",
+    "priority": 1,
+    "globalPriority": 1,
+    "orderLineLevel": false,
+    "filter": "$.[?(@.buId=='0')]",
+    "ruleGroups": [
+      {
+        "groupName": "OnlineGroceriesReturns",
+        "priority": 4,
+        "globalPriority": 4,
+        "orderLineLevel": false,
+        "filter": "$.[?(@.verticalId=='212121')]",
+        "rules": [
+          {
+            "id": "CHECK_RECEIVED_QUANTITY_FOR_GROCERIES",
+            "name": "CHECK_RECEIVED_QUANTITY_FOR_GROCERIES",
+            "priority": 1,
+            "weight": 30,
+            "ruleClass": "receivedQuantityRuleCondition",
+            "exitOnException": true,
+            "exitGroupOnException": true,
+            "ruleProperties": [
+              {
+                "name": "isReturnRule",
+                "value": "Y"
+              },
+              {
+                "name": "isReplacementRule",
+                "value": "Y"
+              },
+              {
+                "name": "EXCEPTION_CODE",
+                "value": "22"
+              },
+              {
+                "name": "EXCEPTION_DESC",
+                "value": "All the items are already returned"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "MYACCOUNT"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "CCA"
+              }
+            ],
+            "active": true
+          },
+          {
+            "id": "CHECK_PROCESSING_QUANTITY_FOR_GROCERIES",
+            "name": "CHECK_PROCESSING_QUANTITY_FOR_GROCERIES",
+            "priority": 2,
+            "weight": 30,
+            "ruleClass": "processingQuantityRuleCondition",
+            "exitOnException": true,
+            "exitGroupOnException": true,
+            "ruleProperties": [
+              {
+                "name": "isReturnRule",
+                "value": "Y"
+              },
+              {
+                "name": "isReplacementRule",
+                "value": "Y"
+              },
+              {
+                "name": "EXCEPTION_CODE",
+                "value": "08"
+              },
+              {
+                "name": "EXCEPTION_DESC",
+                "value": "Sales Order is Not yet shipped"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "MYACCOUNT"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "STORE_MP"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "CCA"
+              }
+            ],
+            "active": true
+          },
+          {
+            "id": "CHECK_CANCELLED_QUANTITY_FOR_GROCERIES",
+            "name": "CHECK_CANCELLED_QUANTITY_FOR_GROCERIES",
+            "priority": 3,
+            "weight": 30,
+            "ruleClass": "cancelledQuantityRuleCondition",
+            "exitOnException": true,
+            "exitGroupOnException": true,
+            "ruleProperties": [
+              {
+                "name": "isReturnRule",
+                "value": "Y"
+              },
+              {
+                "name": "isReplacementRule",
+                "value": "Y"
+              },
+              {
+                "name": "EXCEPTION_CODE",
+                "value": "23"
+              },
+              {
+                "name": "EXCEPTION_DESC",
+                "value": "All the items are in cancelled status"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "MYACCOUNT"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "STORE"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "STORE_MP"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "CCA"
+              }
+            ],
+            "active": true
+          },
+          {
+            "id": "CHECK_READY_FOR_PICKUP_QUANTITY_FOR_GROCERIES",
+            "name": "CHECK_READY_FOR_PICKUP_QUANTITY_FOR_GROCERIES",
+            "priority": 4,
+            "weight": 30,
+            "ruleClass": "readyForPickUpQtyRuleCondition",
+            "exitOnException": true,
+            "exitGroupOnException": true,
+            "ruleProperties": [
+              {
+                "name": "isReturnRule",
+                "value": "Y"
+              },
+              {
+                "name": "isReplacementRule",
+                "value": "Y"
+              },
+              {
+                "name": "EXCEPTION_CODE",
+                "value": "24"
+              },
+              {
+                "name": "EXCEPTION_DESC",
+                "value": "Customer has not picked up the items"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "MYACCOUNT"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "CCA"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "STORE_MP"
+              }
+            ],
+            "active": true
+          },
+          {
+            "id": "CHECK_RETURN_QUANTITY_FOR_GROCERIES",
+            "name": "CHECK_RETURN_QUANTITY_FOR_GROCERIES",
+            "priority": 5,
+            "weight": 30,
+            "ruleClass": "returnQuantityRuleCondition",
+            "exitOnException": true,
+            "exitGroupOnException": true,
+            "ruleProperties": [
+              {
+                "name": "isReturnRule",
+                "value": "Y"
+              },
+              {
+                "name": "isReplacementRule",
+                "value": "Y"
+              },
+              {
+                "name": "EXCEPTION_CODE",
+                "value": "10"
+              },
+              {
+                "name": "EXCEPTION_DESC",
+                "value": "Return has already been initiated for the order"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "MYACCOUNT"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "CCA"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "STORE_MP"
+              }
+            ],
+            "active": true
+          },
+          {
+            "id": "CHANNEL_BASED_REPLACEMENT_BLOCKED_RULE_FOR_GROCERIES",
+            "name": "CHANNEL_BASED_REPLACEMENT_BLOCKED_RULE_FOR_GROCERIES",
+            "priority": 6,
+            "weight": 30,
+            "ruleClass": "channelBasedBlockRule",
+            "exitOnException": true,
+            "exitGroupOnException": true,
+            "ruleProperties": [
+              {
+                "name": "isReturnRule",
+                "value": "N"
+              },
+              {
+                "name": "isReplacementRule",
+                "value": "Y"
+              },
+              {
+                "name": "EXCEPTION_CODE",
+                "value": "39"
+              },
+              {
+                "name": "EXCEPTION_DESC",
+                "value": "Replacement is not allowed from this channel"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "STORE"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "STORE_MP"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "MYACCOUNT"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "CCA"
+              }
+            ],
+            "active": true
+          },
+          {
+            "id": "CHECK_RETURN_WINDOW_FOR_GROCERIES",
+            "name": "CHECK_RETURN_WINDOW_FOR_GROCERIES",
+            "priority": 7,
+            "weight": 30,
+            "ruleClass": "checkReturnWindowForGroceries",
+            "exitOnException": true,
+            "exitGroupOnException": true,
+            "ruleProperties": [
+              {
+                "name": "isReturnRule",
+                "value": "Y"
+              },
+              {
+                "name": "isReplacementRule",
+                "value": "Y"
+              },
+              {
+                "name": "EXCEPTION_CODE",
+                "value": "01"
+              },
+              {
+                "name": "EXCEPTION_DESC",
+                "value": "Return window expired"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "MYACCOUNT"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "STORE"
+              },
+              {
+                "name": "DEFAULT_RETURN_WINDOW",
+                "value": "90"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "STORE_MP"
+              }
+            ],
+            "active": true
+          }
+        ]
+      },
+      {
+        "groupName": "GoogleHomeReturnRules",
+        "priority": 1,
+        "globalPriority": 2,
+        "orderLineLevel": false,
+        "filter": "$.[?(@.verticalId=='101')]",
+        "rules": [
+          {
+            "id": "BLOCK_GOOGLE_HOME_RETURN",
+            "name": "BLOCK_GOOGLE_HOME_RETURN",
+            "priority": 1,
+            "weight": 20,
+            "ruleClass": "googleHomeRuleCondition",
+            "exitOnException": true,
+            "exitGroupOnException": true,
+            "ruleProperties": [
+              {
+                "name": "isReturnRule",
+                "value": "Y"
+              },
+              {
+                "name": "isReplacementRule",
+                "value": "Y"
+              },
+              {
+                "name": "EXCEPTION_CODE",
+                "value": "39"
+              },
+              {
+                "name": "EXCEPTION_DESC",
+                "value": "Google Order - Please contact Google for returns"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "CCA"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "MYACCOUNT"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "STORE"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "STORE_MP"
+              },
+              {
+                "name": "verticalId",
+                "value": "101"
+              }
+            ],
+            "active": true
+          }
+        ]
+      },
+      {
+        "groupName": "CorporateOrderReturnRules",
+        "priority": 2,
+        "globalPriority": 2,
+        "orderLineLevel": false,
+        "filter": "$.[?(@.orderType=='CORPORATE')]",
+        "rules": [
+          {
+            "id": "BLOCK_CORPORATE_RETURN",
+            "name": "BLOCK_CORPORATE_RETURN",
+            "priority": 1,
+            "weight": 25,
+            "ruleClass": "orderTypeRuleCondition",
+            "exitOnException": true,
+            "exitGroupOnException": true,
+            "ruleProperties": [
+              {
+                "name": "isReturnRule",
+                "value": "Y"
+              },
+              {
+                "name": "isReplacementRule",
+                "value": "Y"
+              },
+              {
+                "name": "EXCEPTION_CODE",
+                "value": "26"
+              },
+              {
+                "name": "EXCEPTION_DESC",
+                "value": "Gift card items can not be returned"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "MYACCOUNT"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "STORE"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "STORE_MP"
+              },
+              {
+                "name": "orderType",
+                "value": "CORPORATE"
+              }
+            ],
+            "active": true
+          },
+          {
+            "id": "BLOCK_CORPORATE_RELOAD_RETURN",
+            "name": "BLOCK_CORPORATE_RELOAD_RETURN",
+            "priority": 2,
+            "weight": 25,
+            "ruleClass": "giftCardReloadRuleCondition",
+            "exitOnException": true,
+            "exitGroupOnException": true,
+            "ruleProperties": [
+              {
+                "name": "isReturnRule",
+                "value": "Y"
+              },
+              {
+                "name": "isReplacementRule",
+                "value": "Y"
+              },
+              {
+                "name": "EXCEPTION_CODE",
+                "value": "43"
+              },
+              {
+                "name": "EXCEPTION_DESC",
+                "value": "Gift card items can not be returned for gift card reload"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "MYACCOUNT"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "STORE"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "STORE_MP"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "CCA"
+              },
+              {
+                "name": "offerType",
+                "value": "GIFTCARD_RELOAD"
+              }
+            ],
+            "active": true
+          },
+          {
+            "id": "CHECK_CORPORATE_RETURN_QTY",
+            "name": "CHECK_CORPORATE_RETURN_QTY",
+            "priority": 3,
+            "weight": 25,
+            "ruleClass": "returnQuantityRuleCondition",
+            "exitOnException": true,
+            "exitGroupOnException": true,
+            "ruleProperties": [
+              {
+                "name": "isReturnRule",
+                "value": "Y"
+              },
+              {
+                "name": "isReplacementRule",
+                "value": "Y"
+              },
+              {
+                "name": "EXCEPTION_CODE",
+                "value": "41"
+              },
+              {
+                "name": "EXCEPTION_DESC",
+                "value": "No gift card is eligible for Return either due to order not shipped or already returned"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "MYACCOUNT"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "STORE_MP"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "STORE"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "CCA"
+              }
+            ],
+            "active": true
+          },
+          {
+            "id": "CHECK_CORPORATE_CARD_STATUS",
+            "name": "CHECK_CORPORATE_CARD_STATUS",
+            "priority": 4,
+            "weight": 25,
+            "ruleClass": "corporateCardStatusRuleCondition",
+            "exitOnException": true,
+            "exitGroupOnException": true,
+            "ruleProperties": [
+              {
+                "name": "isReturnRule",
+                "value": "Y"
+              },
+              {
+                "name": "isReplacementRule",
+                "value": "Y"
+              },
+              {
+                "name": "EXCEPTION_CODE",
+                "value": "42"
+              },
+              {
+                "name": "EXCEPTION_DESC",
+                "value": "Gift cards are not activated"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "MYACCOUNT"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "STORE_MP"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "STORE"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "CCA"
+              },
+              {
+                "name": "stopRulesExecution",
+                "value": "Y"
+              }
+            ],
+            "active": true
+          }
+        ]
+      },
+      {
+        "groupName": "WalmartDotComReturnRules",
+        "priority": 3,
+        "globalPriority": 3,
+        "orderLineLevel": false,
+        "filter": "$.[?(@.verticalId=='0' || @.verticalId=='4')]",
+        "rules": [
+          {
+            "id": "CHECK_RETURN_WINDOW",
+            "name": "CHECK_RETURN_WINDOW",
+            "priority": 10,
+            "weight": 30,
+            "ruleClass": "checkReturnWindowRuleCondition",
+            "exitOnException": true,
+            "exitGroupOnException": true,
+            "ruleProperties": [
+              {
+                "name": "isReturnRule",
+                "value": "Y"
+              },
+              {
+                "name": "isReplacementRule",
+                "value": "Y"
+              },
+              {
+                "name": "EXCEPTION_CODE",
+                "value": "01"
+              },
+              {
+                "name": "EXCEPTION_DESC",
+                "value": "Return window expired"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "MYACCOUNT"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "STORE"
+              },
+              {
+                "name": "DEFAULT_RETURN_WINDOW",
+                "value": "90"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "STORE_MP"
+              },
+              {
+                "name": "EXTENDED_HOLIDAY_RETURN_WINDOW",
+                "value": "90"
+              },
+              {
+                "name": "HOLIDAY_WINDOW_START_DATE",
+                "value": "2018-10-28"
+              },
+              {
+                "name": "HOLIDAY_WINDOW_END_DATE",
+                "value": "2018-12-25"
+              }
+            ],
+            "active": true
+          },
+          {
+            "id": "ADD_RETURN_QTY_INFO",
+            "name": "ADD_RETURN_QTY_INFO",
+            "priority": 11,
+            "weight": 30,
+            "ruleClass": "addReturnInfoObjectRuleCondition",
+            "exitOnException": false,
+            "exitGroupOnException": false,
+            "ruleProperties": [
+              {
+                "name": "isReturnRule",
+                "value": "N"
+              },
+              {
+                "name": "isReplacementRule",
+                "value": "N"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "MYACCOUNT"
+              }
+            ],
+            "active": false
+          },
+          {
+            "id": "CHECK_CANCELLED_QUANTITY",
+            "name": "CHECK_CANCELLED_QUANTITY",
+            "priority": 12,
+            "weight": 30,
+            "ruleClass": "cancelledQuantityRuleCondition",
+            "exitOnException": true,
+            "exitGroupOnException": true,
+            "ruleProperties": [
+              {
+                "name": "isReturnRule",
+                "value": "Y"
+              },
+              {
+                "name": "isReplacementRule",
+                "value": "Y"
+              },
+              {
+                "name": "EXCEPTION_CODE",
+                "value": "23"
+              },
+              {
+                "name": "EXCEPTION_DESC",
+                "value": "All the items are in cancelled status"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "MYACCOUNT"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "STORE"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "STORE_MP"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "CCA"
+              }
+            ],
+            "active": true
+          },
+          {
+            "id": "CHECK_PROCESSING_QUANTITY",
+            "name": "CHECK_PROCESSING_QUANTITY",
+            "priority": 13,
+            "weight": 30,
+            "ruleClass": "processingQuantityRuleCondition",
+            "exitOnException": true,
+            "exitGroupOnException": true,
+            "ruleProperties": [
+              {
+                "name": "isReturnRule",
+                "value": "Y"
+              },
+              {
+                "name": "isReplacementRule",
+                "value": "Y"
+              },
+              {
+                "name": "EXCEPTION_CODE",
+                "value": "08"
+              },
+              {
+                "name": "EXCEPTION_DESC",
+                "value": "Sales Order is Not yet shipped"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "MYACCOUNT"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "STORE_MP"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "CCA"
+              }
+            ],
+            "active": true
+          },
+          {
+            "id": "CHECK_PROCESSING_AND_OPENRMA_QTY",
+            "name": "CHECK_PROCESSING_AND_OPENRMA_QTY",
+            "priority": 14,
+            "weight": 30,
+            "ruleClass": "processingAndOpenRMAQuantityRuleCondition",
+            "exitOnException": true,
+            "exitGroupOnException": true,
+            "ruleProperties": [
+              {
+                "name": "isReturnRule",
+                "value": "Y"
+              },
+              {
+                "name": "isReplacementRule",
+                "value": "Y"
+              },
+              {
+                "name": "EXCEPTION_CODE",
+                "value": "08"
+              },
+              {
+                "name": "EXCEPTION_DESC",
+                "value": "Sales Order is Not yet shipped"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "STORE"
+              }
+            ],
+            "active": true
+          },
+          {
+            "id": "CHECK_RECEIVED_QUANTITY",
+            "name": "CHECK_RECEIVED_QUANTITY",
+            "priority": 15,
+            "weight": 30,
+            "ruleClass": "receivedQuantityRuleCondition",
+            "exitOnException": true,
+            "exitGroupOnException": true,
+            "ruleProperties": [
+              {
+                "name": "isReturnRule",
+                "value": "Y"
+              },
+              {
+                "name": "isReplacementRule",
+                "value": "Y"
+              },
+              {
+                "name": "EXCEPTION_CODE",
+                "value": "22"
+              },
+              {
+                "name": "EXCEPTION_DESC",
+                "value": "All the items are already returned"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "MYACCOUNT"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "CCA"
+              }
+            ],
+            "active": true
+          },
+          {
+            "id": "SET_PACKAGE_LEVEL_FLAGS_FOR_S2S",
+            "name": "SET_PACKAGE_LEVEL_FLAGS_FOR_S2S",
+            "priority": 16,
+            "weight": 30,
+            "ruleClass": "setPackageLevelFlagsForS2S",
+            "exitOnException": false,
+            "exitGroupOnException": false,
+            "ruleProperties": [
+              {
+                "name": "isReturnRule",
+                "value": "N"
+              },
+              {
+                "name": "isReplacementRule",
+                "value": "N"
+              },
+              {
+                "name": "paymentType",
+                "value": "PAP"
+              },
+              {
+                "name": "fulfillmentType",
+                "value": "S2S"
+              },
+              {
+                "name": "verticalId",
+                "value": "4"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "MYACCOUNT"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "STORE_MP"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "CCA"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "STORE"
+              }
+            ],
+            "active": true
+          },
+          {
+            "id": "BLOCK_1HG_RETURN",
+            "name": "BLOCK_1HG_RETURN",
+            "priority": 17,
+            "weight": 30,
+            "ruleClass": "fulfillmentTypeRuleCondition",
+            "exitOnException": true,
+            "exitGroupOnException": true,
+            "ruleProperties": [
+              {
+                "name": "isReturnRule",
+                "value": "Y"
+              },
+              {
+                "name": "isReplacementRule",
+                "value": "Y"
+              },
+              {
+                "name": "EXCEPTION_CODE",
+                "value": "25"
+              },
+              {
+                "name": "EXCEPTION_DESC",
+                "value": "1HG items are returnable only at store"
+              },
+              {
+                "name": "fulfillmentType",
+                "value": "1HG"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "CCA"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "MYACCOUNT"
+              }
+            ],
+            "active": true
+          },
+          {
+            "id": "BLOCK_PUT_RETURN",
+            "name": "BLOCK_PUT_RETURN",
+            "priority": 18,
+            "weight": 30,
+            "ruleClass": "fulfillmentTypeRuleCondition",
+            "exitOnException": true,
+            "exitGroupOnException": true,
+            "ruleProperties": [
+              {
+                "name": "isReturnRule",
+                "value": "Y"
+              },
+              {
+                "name": "isReplacementRule",
+                "value": "Y"
+              },
+              {
+                "name": "EXCEPTION_CODE",
+                "value": "09"
+              },
+              {
+                "name": "EXCEPTION_DESC",
+                "value": "Fulfilled by Store Inventory, Hence returnable only in store"
+              },
+              {
+                "name": "fulfillmentType",
+                "value": "PUT"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "CCA"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "MYACCOUNT"
+              }
+            ],
+            "active": true
+          },
+          {
+            "id": "CHECK_RECEIVED_AND_OPENRMA_QTY",
+            "name": "CHECK_RECEIVED_AND_OPENRMA_QTY",
+            "priority": 19,
+            "weight": 30,
+            "ruleClass": "receivedAndOpenRMAQuantityRuleCondition",
+            "exitOnException": true,
+            "exitGroupOnException": true,
+            "ruleProperties": [
+              {
+                "name": "isReturnRule",
+                "value": "Y"
+              },
+              {
+                "name": "isReplacementRule",
+                "value": "Y"
+              },
+              {
+                "name": "EXCEPTION_CODE",
+                "value": "22"
+              },
+              {
+                "name": "EXCEPTION_DESC",
+                "value": "All the items are already returned"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "STORE"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "STORE_MP"
+              }
+            ],
+            "active": true
+          },
+          {
+            "id": "BLOCK_PAP_RETURN",
+            "name": "BLOCK_PAP_RETURN",
+            "priority": 20,
+            "weight": 30,
+            "ruleClass": "paymentPAPRuleCondition",
+            "exitOnException": true,
+            "exitGroupOnException": true,
+            "ruleProperties": [
+              {
+                "name": "isReturnRule",
+                "value": "Y"
+              },
+              {
+                "name": "isReplacementRule",
+                "value": "Y"
+              },
+              {
+                "name": "EXCEPTION_CODE",
+                "value": "44"
+              },
+              {
+                "name": "EXCEPTION_DESC",
+                "value": "PAP payment order can only be returned at Store"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "MYACCOUNT"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "CCA"
+              },
+              {
+                "name": "paymentType",
+                "value": "PAP"
+              },
+              {
+                "name": "verticalId",
+                "value": "4"
+              }
+            ],
+            "active": true
+          },
+          {
+            "id": "CHECK_READY_FOR_PICKUP_QUANTITY",
+            "name": "CHECK_READY_FOR_PICKUP_QUANTITY",
+            "priority": 21,
+            "weight": 30,
+            "ruleClass": "readyForPickUpQtyRuleCondition",
+            "exitOnException": true,
+            "exitGroupOnException": true,
+            "ruleProperties": [
+              {
+                "name": "isReturnRule",
+                "value": "Y"
+              },
+              {
+                "name": "isReplacementRule",
+                "value": "Y"
+              },
+              {
+                "name": "EXCEPTION_CODE",
+                "value": "24"
+              },
+              {
+                "name": "EXCEPTION_DESC",
+                "value": "Customer has not picked up the items"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "MYACCOUNT"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "CCA"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "STORE_MP"
+              }
+            ],
+            "active": true
+          },
+          {
+            "id": "CHECK_READYFORPICKUP_AND_OPENRMAQTY",
+            "name": "CHECK_READYFORPICKUP_AND_OPENRMAQTY",
+            "priority": 22,
+            "weight": 30,
+            "ruleClass": "readyForPickUpAndOpenRMAQtyRuleCondition",
+            "exitOnException": true,
+            "exitGroupOnException": true,
+            "ruleProperties": [
+              {
+                "name": "isReturnRule",
+                "value": "Y"
+              },
+              {
+                "name": "isReplacementRule",
+                "value": "Y"
+              },
+              {
+                "name": "EXCEPTION_CODE",
+                "value": "24"
+              },
+              {
+                "name": "EXCEPTION_DESC",
+                "value": "Customer has not picked up the items"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "STORE"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "STORE_MP"
+              }
+            ],
+            "active": true
+          },
+          {
+            "id": "CHECK_RETURN_QUANTITY",
+            "name": "CHECK_RETURN_QUANTITY",
+            "priority": 23,
+            "weight": 30,
+            "ruleClass": "returnQuantityRuleCondition",
+            "exitOnException": true,
+            "exitGroupOnException": true,
+            "ruleProperties": [
+              {
+                "name": "isReturnRule",
+                "value": "Y"
+              },
+              {
+                "name": "isReplacementRule",
+                "value": "Y"
+              },
+              {
+                "name": "EXCEPTION_CODE",
+                "value": "10"
+              },
+              {
+                "name": "EXCEPTION_DESC",
+                "value": "Return has already been initiated for the order"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "MYACCOUNT"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "CCA"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "STORE_MP"
+              }
+            ],
+            "active": true
+          },
+          {
+            "id": "CHECK_RETURN_AND_OPENRMA_QUANTITY",
+            "name": "CHECK_RETURN_AND_OPENRMA_QUANTITY",
+            "priority": 24,
+            "weight": 30,
+            "ruleClass": "returnAndOpenRmaQuantityRuleCondition",
+            "exitOnException": true,
+            "exitGroupOnException": true,
+            "ruleProperties": [
+              {
+                "name": "isReturnRule",
+                "value": "Y"
+              },
+              {
+                "name": "isReplacementRule",
+                "value": "Y"
+              },
+              {
+                "name": "EXCEPTION_CODE",
+                "value": "10"
+              },
+              {
+                "name": "EXCEPTION_DESC",
+                "value": "Return has already been initiated for the order"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "STORE"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "STORE_MP"
+              }
+            ],
+            "active": true
+          },
+          {
+            "id": "CHANNEL_BASED_REPLACEMENT_BLOCKED_RULE",
+            "name": "CHANNEL_BASED_REPLACEMENT_BLOCKED_RULE",
+            "priority": 25,
+            "weight": 30,
+            "ruleClass": "channelBasedBlockRule",
+            "exitOnException": true,
+            "exitGroupOnException": true,
+            "ruleProperties": [
+              {
+                "name": "isReturnRule",
+                "value": "N"
+              },
+              {
+                "name": "isReplacementRule",
+                "value": "Y"
+              },
+              {
+                "name": "EXCEPTION_CODE",
+                "value": "39"
+              },
+              {
+                "name": "EXCEPTION_DESC",
+                "value": "Replacement is not allowed from this channel"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "STORE"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "STORE_MP"
+              }
+            ],
+            "active": true
+          },
+          {
+            "id": "BLOCK_PHARMACY_RETURN",
+            "name": "BLOCK_PHARMACY_RETURN",
+            "priority": 26,
+            "weight": 30,
+            "ruleClass": "orderTypeRuleCondition",
+            "exitOnException": true,
+            "exitGroupOnException": true,
+            "ruleProperties": [
+              {
+                "name": "isReturnRule",
+                "value": "Y"
+              },
+              {
+                "name": "isReplacementRule",
+                "value": "Y"
+              },
+              {
+                "name": "EXCEPTION_CODE",
+                "value": "13"
+              },
+              {
+                "name": "EXCEPTION_DESC",
+                "value": "Pharmacy item can not be returned"
+              },
+              {
+                "name": "orderType",
+                "value": "PHARMACY"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "CCA"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "STORE_MP"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "MYACCOUNT"
+              }
+            ],
+            "active": true
+          },
+          {
+            "id": "BLOCK_PHARMACY_REPLACEMENT",
+            "name": "BLOCK_PHARMACY_REPLACEMENT",
+            "priority": 27,
+            "weight": 30,
+            "ruleClass": "orderTypeRuleCondition",
+            "exitOnException": true,
+            "exitGroupOnException": true,
+            "ruleProperties": [
+              {
+                "name": "isReturnRule",
+                "value": "N"
+              },
+              {
+                "name": "isReplacementRule",
+                "value": "Y"
+              },
+              {
+                "name": "EXCEPTION_CODE",
+                "value": "19"
+              },
+              {
+                "name": "EXCEPTION_DESC",
+                "value": "Replacement is not allowed for Pharmacy items"
+              },
+              {
+                "name": "orderType",
+                "value": "PHARMACY"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "STORE"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "STORE_MP"
+              }
+            ],
+            "active": true
+          },
+          {
+            "id": "BLOCK_PHOTO_RETURN",
+            "name": "BLOCK_PHOTO_RETURN",
+            "priority": 28,
+            "weight": 30,
+            "ruleClass": "orderTypeRuleCondition",
+            "exitOnException": true,
+            "exitGroupOnException": true,
+            "ruleProperties": [
+              {
+                "name": "isReturnRule",
+                "value": "Y"
+              },
+              {
+                "name": "isReplacementRule",
+                "value": "N"
+              },
+              {
+                "name": "EXCEPTION_CODE",
+                "value": "14"
+              },
+              {
+                "name": "EXCEPTION_DESC",
+                "value": "Returns are not allowed for photo item"
+              },
+              {
+                "name": "orderType",
+                "value": "PHOTO_PRINT_RETAIL"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "MYACCOUNT"
+              }
+            ],
+            "active": true
+          },
+          {
+            "id": "BLOCK_PHOTO_VERTICAL_RETURN",
+            "name": "BLOCK_PHOTO_VERTICAL_RETURN",
+            "priority": 29,
+            "weight": 30,
+            "ruleClass": "verticalIdRuleCondition",
+            "exitOnException": true,
+            "exitGroupOnException": true,
+            "ruleProperties": [
+              {
+                "name": "isReturnRule",
+                "value": "Y"
+              },
+              {
+                "name": "isReplacementRule",
+                "value": "N"
+              },
+              {
+                "name": "EXCEPTION_CODE",
+                "value": "14"
+              },
+              {
+                "name": "EXCEPTION_DESC",
+                "value": "Returns are not allowed for photo item"
+              },
+              {
+                "name": "verticalId",
+                "value": "4"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "MYACCOUNT"
+              }
+            ],
+            "active": true
+          },
+          {
+            "id": "BLOCK_PHOTO_REPLACEMENT",
+            "name": "BLOCK_PHOTO_REPLACEMENT",
+            "priority": 30,
+            "weight": 30,
+            "ruleClass": "orderTypeRuleCondition",
+            "exitOnException": true,
+            "exitGroupOnException": true,
+            "ruleProperties": [
+              {
+                "name": "isReturnRule",
+                "value": "N"
+              },
+              {
+                "name": "isReplacementRule",
+                "value": "Y"
+              },
+              {
+                "name": "EXCEPTION_CODE",
+                "value": "17"
+              },
+              {
+                "name": "EXCEPTION_DESC",
+                "value": "Replacement is not allowed for photo items"
+              },
+              {
+                "name": "orderType",
+                "value": "PHOTO_PRINT_RETAIL"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "CCA"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "MYACCOUNT"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "STORE"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "STORE_MP"
+              }
+            ],
+            "active": true
+          },
+          {
+            "id": "BLOCK_PHOTO_VERTICAL_REPLACEMENT",
+            "name": "BLOCK_PHOTO_VERTICAL_REPLACEMENT",
+            "priority": 31,
+            "weight": 30,
+            "ruleClass": "verticalIdRuleCondition",
+            "exitOnException": true,
+            "exitGroupOnException": true,
+            "ruleProperties": [
+              {
+                "name": "isReturnRule",
+                "value": "N"
+              },
+              {
+                "name": "isReplacementRule",
+                "value": "Y"
+              },
+              {
+                "name": "EXCEPTION_CODE",
+                "value": "17"
+              },
+              {
+                "name": "EXCEPTION_DESC",
+                "value": "Replacement is not allowed for photo items"
+              },
+              {
+                "name": "verticalId",
+                "value": "4"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "CCA"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "MYACCOUNT"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "STORE"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "STORE_MP"
+              }
+            ],
+            "active": true
+          },
+          {
+            "id": "BLOCK_PIP_RETURN",
+            "name": "BLOCK_PIP_RETURN",
+            "priority": 32,
+            "weight": 30,
+            "ruleClass": "paymentMethodRuleCondition",
+            "exitOnException": true,
+            "exitGroupOnException": true,
+            "ruleProperties": [
+              {
+                "name": "isReturnRule",
+                "value": "Y"
+              },
+              {
+                "name": "isReplacementRule",
+                "value": "Y"
+              },
+              {
+                "name": "EXCEPTION_CODE",
+                "value": "04"
+              },
+              {
+                "name": "EXCEPTION_DESC",
+                "value": "Payment method is PIP"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "MYACCOUNT"
+              },
+              {
+                "name": "paymentType",
+                "value": "PIP"
+              }
+            ],
+            "active": true
+          },
+          {
+            "id": "BLOCK_EDELIVERY_RETURN",
+            "name": "BLOCK_EDELIVERY_RETURN",
+            "priority": 33,
+            "weight": 30,
+            "ruleClass": "edeliveryRuleCondition",
+            "exitOnException": true,
+            "exitGroupOnException": true,
+            "ruleProperties": [
+              {
+                "name": "isReturnRule",
+                "value": "Y"
+              },
+              {
+                "name": "isReplacementRule",
+                "value": "Y"
+              },
+              {
+                "name": "EXCEPTION_CODE",
+                "value": "15"
+              },
+              {
+                "name": "EXCEPTION_DESC",
+                "value": "eDELIVERY items can not be returned"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "MYACCOUNT"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "STORE"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "STORE_MP"
+              },
+              {
+                "name": "fulfillmentType",
+                "value": "ELECTRONIC"
+              }
+            ],
+            "active": true
+          },
+          {
+            "id": "BLOCK_EDELIVERY_REPLACEMENT",
+            "name": "BLOCK_EDELIVERY_REPLACEMENT",
+            "priority": 34,
+            "weight": 30,
+            "ruleClass": "edeliveryRuleCondition",
+            "exitOnException": true,
+            "exitGroupOnException": true,
+            "ruleProperties": [
+              {
+                "name": "isReturnRule",
+                "value": "N"
+              },
+              {
+                "name": "isReplacementRule",
+                "value": "Y"
+              },
+              {
+                "name": "EXCEPTION_CODE",
+                "value": "18"
+              },
+              {
+                "name": "EXCEPTION_DESC",
+                "value": "Replacement is not allowed for eDELIVERY items"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "CCA"
+              },
+              {
+                "name": "fulfillmentType",
+                "value": "ELECTRONIC"
+              }
+            ],
+            "active": true
+          },
+          {
+            "id": "BLOCK_TYRE_RETURN",
+            "name": "BLOCK_TYRE_RETURN",
+            "priority": 35,
+            "weight": 30,
+            "ruleClass": "productClassRuleCondition",
+            "exitOnException": true,
+            "exitGroupOnException": true,
+            "ruleProperties": [
+              {
+                "name": "isReturnRule",
+                "value": "Y"
+              },
+              {
+                "name": "isReplacementRule",
+                "value": "Y"
+              },
+              {
+                "name": "EXCEPTION_CODE",
+                "value": "20"
+              },
+              {
+                "name": "EXCEPTION_DESC",
+                "value": "Return is not allowed for tires"
+              },
+              {
+                "name": "productClass",
+                "value": "28"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "MYACCOUNT"
+              },
+              {
+                "name": "flag",
+                "value": "isTyreItem"
+              }
+            ],
+            "active": true
+          },
+          {
+            "id": "BLOCK_UAB_GIFT_CARD_RETURN",
+            "name": "BLOCK_UAB_GIFT_CARD_RETURN",
+            "priority": 36,
+            "weight": 30,
+            "ruleClass": "productClassRuleCondition",
+            "exitOnException": true,
+            "exitGroupOnException": true,
+            "ruleProperties": [
+              {
+                "name": "isReturnRule",
+                "value": "Y"
+              },
+              {
+                "name": "isReplacementRule",
+                "value": "Y"
+              },
+              {
+                "name": "EXCEPTION_CODE",
+                "value": "26"
+              },
+              {
+                "name": "EXCEPTION_DESC",
+                "value": "Gift card items can not be returned"
+              },
+              {
+                "name": "productClass",
+                "value": "57"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "MYACCOUNT"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "STORE"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "STORE_MP"
+              },
+              {
+                "name": "flag",
+                "value": "isGiftCard"
+              }
+            ],
+            "active": true
+          },
+          {
+            "id": "BLOCK_E_GIFT_CARD_RETURN",
+            "name": "BLOCK_E_GIFT_CARD_RETURN",
+            "priority": 37,
+            "weight": 30,
+            "ruleClass": "productClassRuleCondition",
+            "exitOnException": true,
+            "exitGroupOnException": true,
+            "ruleProperties": [
+              {
+                "name": "isReturnRule",
+                "value": "Y"
+              },
+              {
+                "name": "isReplacementRule",
+                "value": "Y"
+              },
+              {
+                "name": "EXCEPTION_CODE",
+                "value": "26"
+              },
+              {
+                "name": "EXCEPTION_DESC",
+                "value": "Gift card items can not be returned"
+              },
+              {
+                "name": "productClass",
+                "value": "31"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "MYACCOUNT"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "STORE"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "STORE_MP"
+              },
+              {
+                "name": "flag",
+                "value": "isGiftCard"
+              }
+            ],
+            "active": true
+          },
+          {
+            "id": "BLOCK_PHYSICAL_GIFT_CARD_RETURN",
+            "name": "BLOCK_PHYSICAL_GIFT_CARD_RETURN",
+            "priority": 38,
+            "weight": 30,
+            "ruleClass": "productClassRuleCondition",
+            "exitOnException": true,
+            "exitGroupOnException": true,
+            "ruleProperties": [
+              {
+                "name": "isReturnRule",
+                "value": "Y"
+              },
+              {
+                "name": "isReplacementRule",
+                "value": "Y"
+              },
+              {
+                "name": "EXCEPTION_CODE",
+                "value": "26"
+              },
+              {
+                "name": "EXCEPTION_DESC",
+                "value": "Gift card items can not be returned"
+              },
+              {
+                "name": "productClass",
+                "value": "48"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "MYACCOUNT"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "STORE"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "STORE_MP"
+              },
+              {
+                "name": "flag",
+                "value": "isGiftCard"
+              }
+            ],
+            "active": true
+          },
+          {
+            "id": "BLOCK__UAB_GIFT_CARD_REPLACEMENT",
+            "name": "BLOCK__UAB_GIFT_CARD_REPLACEMENT",
+            "priority": 39,
+            "weight": 30,
+            "ruleClass": "productClassRuleCondition",
+            "exitOnException": true,
+            "exitGroupOnException": true,
+            "ruleProperties": [
+              {
+                "name": "isReturnRule",
+                "value": "N"
+              },
+              {
+                "name": "isReplacementRule",
+                "value": "Y"
+              },
+              {
+                "name": "EXCEPTION_CODE",
+                "value": "26"
+              },
+              {
+                "name": "EXCEPTION_DESC",
+                "value": "Gift card items can not be returned"
+              },
+              {
+                "name": "productClass",
+                "value": "57"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "CCA"
+              },
+              {
+                "name": "flag",
+                "value": "isGiftCard"
+              }
+            ],
+            "active": true
+          },
+          {
+            "id": "BLOCK__E_GIFT_CARD_REPLACEMENT",
+            "name": "BLOCK__E_GIFT_CARD_REPLACEMENT",
+            "priority": 40,
+            "weight": 30,
+            "ruleClass": "productClassRuleCondition",
+            "exitOnException": true,
+            "exitGroupOnException": true,
+            "ruleProperties": [
+              {
+                "name": "isReturnRule",
+                "value": "N"
+              },
+              {
+                "name": "isReplacementRule",
+                "value": "Y"
+              },
+              {
+                "name": "EXCEPTION_CODE",
+                "value": "26"
+              },
+              {
+                "name": "EXCEPTION_DESC",
+                "value": "Gift card items can not be returned"
+              },
+              {
+                "name": "productClass",
+                "value": "31"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "CCA"
+              },
+              {
+                "name": "flag",
+                "value": "isGiftCard"
+              }
+            ],
+            "active": true
+          },
+          {
+            "id": "BLOCK__PHYSICAL_GIFT_CARD_REPLACEMENT",
+            "name": "BLOCK__PHYSICAL_GIFT_CARD_REPLACEMENT",
+            "priority": 41,
+            "weight": 30,
+            "ruleClass": "productClassRuleCondition",
+            "exitOnException": false,
+            "exitGroupOnException": true,
+            "ruleProperties": [
+              {
+                "name": "isReturnRule",
+                "value": "N"
+              },
+              {
+                "name": "isReplacementRule",
+                "value": "Y"
+              },
+              {
+                "name": "EXCEPTION_CODE",
+                "value": "26"
+              },
+              {
+                "name": "EXCEPTION_DESC",
+                "value": "Gift card items can not be returned"
+              },
+              {
+                "name": "productClass",
+                "value": "48"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "CCA"
+              },
+              {
+                "name": "flag",
+                "value": "isGiftCard"
+              }
+            ],
+            "active": true
+          },
+          {
+            "id": "BLOCK_GLASS_RETURN_REPLACEMENT",
+            "name": "BLOCK_GLASS_RETURN_REPLACEMENT",
+            "priority": 42,
+            "weight": 30,
+            "ruleClass": "productClassRuleCondition",
+            "exitOnException": true,
+            "exitGroupOnException": true,
+            "ruleProperties": [
+              {
+                "name": "isReturnRule",
+                "value": "Y"
+              },
+              {
+                "name": "isReplacementRule",
+                "value": "Y"
+              },
+              {
+                "name": "EXCEPTION_CODE",
+                "value": "28"
+              },
+              {
+                "name": "EXCEPTION_DESC",
+                "value": "Glass items can not be returned/replaced in MyAccount"
+              },
+              {
+                "name": "productClass",
+                "value": "68"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "MYACCOUNT"
+              },
+              {
+                "name": "flag",
+                "value": "isGlassItem"
+              }
+            ],
+            "active": false
+          },
+          {
+            "id": "BLOCK_GLASS_REPLACEMENT",
+            "name": "BLOCK_GLASS_REPLACEMENT",
+            "priority": 43,
+            "weight": 30,
+            "ruleClass": "productClassRuleCondition",
+            "exitOnException": true,
+            "exitGroupOnException": true,
+            "ruleProperties": [
+              {
+                "name": "isReturnRule",
+                "value": "N"
+              },
+              {
+                "name": "isReplacementRule",
+                "value": "Y"
+              },
+              {
+                "name": "EXCEPTION_CODE",
+                "value": "28"
+              },
+              {
+                "name": "EXCEPTION_DESC",
+                "value": "Glass items can not be replaced"
+              },
+              {
+                "name": "productClass",
+                "value": "68"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "STORE"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "STORE_MP"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "CCA"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "MYACCOUNT"
+              }
+            ],
+            "active": true
+          },
+          {
+            "id": "BLOCK_GIFTCARD_RELOAD_RETURN",
+            "name": "BLOCK_GIFTCARD_RELOAD_RETURN",
+            "priority": 44,
+            "weight": 30,
+            "ruleClass": "giftCardReloadRuleCondition",
+            "exitOnException": true,
+            "exitGroupOnException": true,
+            "ruleProperties": [
+              {
+                "name": "isReturnRule",
+                "value": "Y"
+              },
+              {
+                "name": "isReplacementRule",
+                "value": "Y"
+              },
+              {
+                "name": "EXCEPTION_CODE",
+                "value": "43"
+              },
+              {
+                "name": "EXCEPTION_DESC",
+                "value": "Gift card items can not be returned for gift card reload"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "MYACCOUNT"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "STORE"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "STORE_MP"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "CCA"
+              },
+              {
+                "name": "offerType",
+                "value": "GIFTCARD_RELOAD"
+              }
+            ],
+            "active": true
+          },
+          {
+            "id": "BLOCK_PERSONALIZED_RETURN",
+            "name": "BLOCK_PERSONALIZED_RETURN",
+            "priority": 45,
+            "weight": 30,
+            "ruleClass": "productClassRuleCondition",
+            "exitOnException": true,
+            "exitGroupOnException": true,
+            "ruleProperties": [
+              {
+                "name": "isReturnRule",
+                "value": "N"
+              },
+              {
+                "name": "isReplacementRule",
+                "value": "Y"
+              },
+              {
+                "name": "EXCEPTION_CODE",
+                "value": "27"
+              },
+              {
+                "name": "EXCEPTION_DESC",
+                "value": "Personalized items can not be replaced"
+              },
+              {
+                "name": "productClass",
+                "value": "25"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "MYACCOUNT"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "CCA"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "STORE"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "STORE_MP"
+              },
+              {
+                "name": "flag",
+                "value": "isPersonlized"
+              }
+            ],
+            "active": true
+          },
+          {
+            "id": "BLOCK_EXCHANGE_ON_EXCHANGE",
+            "name": "BLOCK_EXCHANGE_ON_EXCHANGE",
+            "priority": 46,
+            "weight": 30,
+            "ruleClass": "blockExchangeOnExchangeRuleCondition",
+            "exitOnException": true,
+            "exitGroupOnException": true,
+            "ruleProperties": [
+              {
+                "name": "isReturnRule",
+                "value": "N"
+              },
+              {
+                "name": "isReplacementRule",
+                "value": "Y"
+              },
+              {
+                "name": "EXCEPTION_CODE",
+                "value": "10"
+              },
+              {
+                "name": "EXCEPTION_DESC",
+                "value": "Return has already been initiated for the order"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "MYACCOUNT"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "CCA"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "STORE"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "STORE_MP"
+              }
+            ],
+            "active": true
+          },
+          {
+            "id": "BLOCK_RETURN_REPLACEMENT_BY_ITEM_DIMENSION",
+            "name": "BLOCK_RETURN_REPLACEMENT_BY_ITEM_DIMENSION",
+            "priority": 47,
+            "weight": 30,
+            "ruleClass": "itemDimensionCallTagRuleCondition",
+            "exitOnException": true,
+            "exitGroupOnException": true,
+            "ruleProperties": [
+              {
+                "name": "isReturnRule",
+                "value": "Y"
+              },
+              {
+                "name": "isReplacementRule",
+                "value": "Y"
+              },
+              {
+                "name": "EXCEPTION_CODE",
+                "value": "05"
+              },
+              {
+                "name": "EXCEPTION_DESC",
+                "value": "Please contact customer-care as it requires call tag"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "MYACCOUNT"
+              }
+            ],
+            "active": false
+          },
+          {
+            "id": "BLOCK_PERISHABLE_ITEM",
+            "name": "BLOCK_PERISHABLE_ITEM",
+            "priority": 49,
+            "weight": 30,
+            "ruleClass": "perishableItemRuleCondition",
+            "exitOnException": true,
+            "exitGroupOnException": true,
+            "ruleProperties": [
+              {
+                "name": "isReturnRule",
+                "value": "Y"
+              },
+              {
+                "name": "isReplacementRule",
+                "value": "Y"
+              },
+              {
+                "name": "EXCEPTION_CODE",
+                "value": "07"
+              },
+              {
+                "name": "EXCEPTION_DESC",
+                "value": "Perishable item, hence only refundable by WALMART.COM Customer service"
+              },
+              {
+                "name": "CHANNEL",
+                "value": "STORE"
+              }
+            ],
+            "active": true
+          }
+        ],
+        "ruleGroups": [
+          {
+            "groupName": "Block1PForMPReturn",
+            "priority": 1,
+            "globalPriority": 4,
+            "orderLineLevel": true,
+            "filter": "$.seller.[?(@.legacySellerId=='0')]",
+            "rules": [
+              {
+                "id": "1P_BLOCKING_RULE",
+                "name": "1P_BLOCKING_RULE",
+                "priority": 1,
+                "weight": 40,
+                "ruleClass": "channelBasedBlockRule",
+                "exitOnException": true,
+                "exitGroupOnException": true,
+                "ruleProperties": [
+                  {
+                    "name": "isReturnRule",
+                    "value": "Y"
+                  },
+                  {
+                    "name": "isReplacementRule",
+                    "value": "Y"
+                  },
+                  {
+                    "name": "EXCEPTION_CODE",
+                    "value": "48"
+                  },
+                  {
+                    "name": "EXCEPTION_DESC",
+                    "value": "1P Item is not allowed from this channel"
+                  },
+                  {
+                    "name": "CHANNEL",
+                    "value": "STORE_MP"
+                  }
+                ],
+                "active": true
+              }
+            ]
+          },
+          {
+            "groupName": "MarketPlaceReturnRules",
+            "priority": 2,
+            "globalPriority": 5,
+            "orderLineLevel": true,
+            "filter": "$.seller.[?(@.legacySellerId !='0')]",
+            "rules": [
+              {
+                "id": "3P_BLOCKING_RULE",
+                "name": "3P_BLOCKING_RULE",
+                "priority": 1,
+                "weight": 40,
+                "ruleClass": "marketPlaceSellerBasedReturnToStore",
+                "exitOnException": true,
+                "exitGroupOnException": true,
+                "ruleProperties": [
+                  {
+                    "name": "isReturnRule",
+                    "value": "Y"
+                  },
+                  {
+                    "name": "isReplacementRule",
+                    "value": "Y"
+                  },
+                  {
+                    "name": "EXCEPTION_CODE",
+                    "value": "06"
+                  },
+                  {
+                    "name": "EXCEPTION_DESC",
+                    "value": "3P Item is not allowed from this channel"
+                  },
+                  {
+                    "name": "CHANNEL",
+                    "value": "STORE_MP"
+                  }
+                ],
+                "active": true
+              },
+              {
+                "id": "3P_BLOCKING_RULE_STORE",
+                "name": "3P_BLOCKING_RULE_STORE",
+                "priority": 2,
+                "weight": 40,
+                "ruleClass": "channelBasedBlockRule",
+                "exitOnException": true,
+                "exitGroupOnException": true,
+                "ruleProperties": [
+                  {
+                    "name": "isReturnRule",
+                    "value": "Y"
+                  },
+                  {
+                    "name": "isReplacementRule",
+                    "value": "Y"
+                  },
+                  {
+                    "name": "EXCEPTION_CODE",
+                    "value": "06"
+                  },
+                  {
+                    "name": "EXCEPTION_DESC",
+                    "value": "3P Item is not allowed from this channel"
+                  },
+                  {
+                    "name": "CHANNEL",
+                    "value": "STORE"
+                  }
+                ],
+                "active": true
+              },
+              {
+                "id": "SELLER_BASED_RETURN_WINDOW",
+                "name": "SELLER_BASED_RETURN_WINDOW",
+                "priority": 3,
+                "weight": 50,
+                "ruleClass": "checkSellerBasedReturnWindowRuleCondition",
+                "exitOnException": true,
+                "exitGroupOnException": true,
+                "ruleProperties": [
+                  {
+                    "name": "isReturnRule",
+                    "value": "Y"
+                  },
+                  {
+                    "name": "isReplacementRule",
+                    "value": "Y"
+                  },
+                  {
+                    "name": "EXCEPTION_CODE",
+                    "value": "01"
+                  },
+                  {
+                    "name": "EXCEPTION_DESC",
+                    "value": "Return window expired"
+                  },
+                  {
+                    "name": "CHANNEL",
+                    "value": "STORE_MP"
+                  },
+                  {
+                    "name": "CHANNEL",
+                    "value": "MYACCOUNT"
+                  },
+                  {
+                    "name": "CHANNEL",
+                    "value": "CCA"
+                  },
+	              {
+	                "name": "ALLOW_EXTENDED_HOLIDAY_RETURN_WINDOW_FOR_MP",
+	                "value": "N"
+	              },
+	              {
+	                "name": "EXTENDED_HOLIDAY_RETURN_WINDOW",
+	                "value": "90"
+	              },
+	              {
+	                "name": "HOLIDAY_WINDOW_START_DATE",
+	                "value": "2018-10-28"
+	              },
+	              {
+	                "name": "HOLIDAY_WINDOW_END_DATE",
+	                "value": "2018-12-25"
+	              }
+                ],
+                "active": true
+              },
+              {
+                "id": "CHANNEL_BASED_REPLACEMENT_BLOCKED_RULE_MP",
+                "name": "CHANNEL_BASED_REPLACEMENT_BLOCKED_RULE_MP",
+                "priority": 4,
+                "weight": 30,
+                "ruleClass": "channelBasedBlockRule",
+                "exitOnException": true,
+                "exitGroupOnException": true,
+                "ruleProperties": [
+                  {
+                    "name": "isReturnRule",
+                    "value": "N"
+                  },
+                  {
+                    "name": "isReplacementRule",
+                    "value": "Y"
+                  },
+                  {
+                    "name": "EXCEPTION_CODE",
+                    "value": "51"
+                  },
+                  {
+                    "name": "EXCEPTION_DESC",
+                    "value": "Replacement is not allowed for Market Place Items."
+                  },
+                  {
+                    "name": "CHANNEL",
+                    "value": "STORE"
+                  },
+                  {
+                    "name": "CHANNEL",
+                    "value": "STORE_MP"
+                  },
+                  {
+                    "name": "CHANNEL",
+                    "value": "CCA"
+                  },
+                  {
+                    "name": "CHANNEL",
+                    "value": "MYACCOUNT"
+                  }
+                ],
+                "active": true
+              },
+              {
+                "id": "SELLER_BASED_BLOCKED_RULE_STORE_MP",
+                "name": "SELLER_BASED_BLOCKED_RULE_STORE_MP",
+                "priority": 5,
+                "weight": 50,
+                "ruleClass": "sellerBasedRuleConditionForMP_STORE_MP",
+                "exitOnException": true,
+                "exitGroupOnException": true,
+                "ruleProperties": [
+                  {
+                    "name": "isReturnRule",
+                    "value": "Y"
+                  },
+                  {
+                    "name": "isReplacementRule",
+                    "value": "Y"
+                  },
+                  {
+                    "name": "EXCEPTION_CODE",
+                    "value": "50"
+                  },
+                  {
+                    "name": "EXCEPTION_DESC",
+                    "value": "Seller is not allowed to place market place return request."
+                  },
+                  {
+                    "name": "CHANNEL",
+                    "value": "STORE_MP"
+                  }
+                ],
+                "active": false
+              },
+              {
+                "id": "SELLER_BASED_BLOCKED_RULE_MYACCOUNT",
+                "name": "SELLER_BASED_BLOCKED_RULE_MYACCOUNT",
+                "priority": 6,
+                "weight": 50,
+                "ruleClass": "sellerBasedRuleConditionForMP_MYACCOUNT",
+                "exitOnException": true,
+                "exitGroupOnException": true,
+                "ruleProperties": [
+                  {
+                    "name": "isReturnRule",
+                    "value": "Y"
+                  },
+                  {
+                    "name": "isReplacementRule",
+                    "value": "Y"
+                  },
+                  {
+                    "name": "EXCEPTION_CODE",
+                    "value": "50"
+                  },
+                  {
+                    "name": "EXCEPTION_DESC",
+                    "value": "Seller is not allowed to place market place return request."
+                  },
+                  {
+                    "name": "CHANNEL",
+                    "value": "MYACCOUNT"
+                  }
+                ],
+                "active": true
+              },
+              {
+                "id": "SELLER_BASED_BLOCKED_RULE_CCA",
+                "name": "SELLER_BASED_BLOCKED_RULE_CCA",
+                "priority": 7,
+                "weight": 50,
+                "ruleClass": "sellerBasedRuleConditionForMP_CCA",
+                "exitOnException": true,
+                "exitGroupOnException": true,
+                "ruleProperties": [
+                  {
+                    "name": "isReturnRule",
+                    "value": "Y"
+                  },
+                  {
+                    "name": "isReplacementRule",
+                    "value": "Y"
+                  },
+                  {
+                    "name": "EXCEPTION_CODE",
+                    "value": "50"
+                  },
+                  {
+                    "name": "EXCEPTION_DESC",
+                    "value": "Seller is not allowed to place market place return request."
+                  },
+                  {
+                    "name": "CHANNEL",
+                    "value": "CCA"
+                  }
+                ],
+                "active": true
+              },
+              {
+                "id": "BLOCK_RETURN_REPLACEMENT_BY_HAZMAT_MP",
+                "name": "BLOCK_RETURN_REPLACEMENT_BY_HAZMAT_MP",
+                "priority": 8,
+                "weight": 70,
+                "ruleClass": "itemHazmatRuleCondition",
+                "exitOnException": true,
+                "exitGroupOnException": true,
+                "ruleProperties": [
+                  {
+                    "name": "isReturnRule",
+                    "value": "Y"
+                  },
+                  {
+                    "name": "isReplacementRule",
+                    "value": "Y"
+                  },
+                  {
+                    "name": "EXCEPTION_CODE",
+                    "value": "47"
+                  },
+                  {
+                    "name": "EXCEPTION_DESC",
+                    "value": "Return and replacement is not allowed for Hazmat items"
+                  },
+                  {
+                    "name": "CHANNEL",
+                    "value": "STORE"
+                  },
+                  {
+                    "name": "CHANNEL",
+                    "value": "STORE_MP"
+                  },
+                  {
+                    "name": "CHANNEL",
+                    "value": "CCA"
+                  },
+                  {
+                    "name": "hazmatcodes",
+                    "value": "R1,R2,R3,R4,R5,R6,R7,R8,R9,R10,R11,R12"
+                  },
+                  {
+                    "name": "batteryhazmatcodes",
+                    "value": "R13,R14"
+                  }
+                ],
+                "active": true
+              },
+              {
+                "id": "BLOCK_RETURN_REPLACEMENT_BY_ITEM_DIMENSION_RAP_MP",
+                "name": "BLOCK_RETURN_REPLACEMENT_BY_ITEM_DIMENSION_RAP_MP",
+                "priority": 9,
+                "weight": 50,
+                "ruleClass": "itemDimensionCallTagRuleConditionRAP",
+                "exitOnException": true,
+                "exitGroupOnException": true,
+                "ruleProperties": [
+                  {
+                    "name": "isReturnRule",
+                    "value": "Y"
+                  },
+                  {
+                    "name": "isReplacementRule",
+                    "value": "Y"
+                  },
+                  {
+                    "name": "EXCEPTION_CODE",
+                    "value": "53"
+                  },
+                  {
+                    "name": "EXCEPTION_DESC",
+                    "value": "Please contact customer-care as it requires call tag"
+                  },
+                  {
+                    "name": "CHANNEL",
+                    "value": "STORE"
+                  },
+                  {
+                    "name": "CHANNEL",
+                    "value": "STORE_MP"
+                  },
+                  {
+                    "name": "CHANNEL",
+                    "value": "CCA"
+                  },
+                  {
+                    "name": "CHANNEL",
+                    "value": "MYACCOUNT"
+                  }
+                ],
+                "active": true
+              },
+              {
+                "id": "BLOCK_RETURN_REPLACEMENT_BY_SELLER_RESTRICTEDREASON_RAP_MP",
+                "name": "BLOCK_RETURN_REPLACEMENT_BY_SELLER_RESTRICTEDREASON_RAP_MP",
+                "priority": 10,
+                "weight": 50,
+                "ruleClass": "itemSellerRestrictedRuleCondition",
+                "exitOnException": true,
+                "exitGroupOnException": true,
+                "ruleProperties": [
+                  {
+                    "name": "restrictedReason",
+                    "value": "OTHER"
+                  },
+                  {
+                    "name": "isReturnRule",
+                    "value": "Y"
+                  },
+                  {
+                    "name": "isReplacementRule",
+                    "value": "Y"
+                  },
+                  {
+                    "name": "EXCEPTION_CODE",
+                    "value": "64"
+                  },
+                  {
+                    "name": "EXCEPTION_DESC",
+                    "value": "Please contact the seller as this item requires special handling"
+                  },
+                  {
+                    "name": "CHANNEL",
+                    "value": "STORE"
+                  },
+                  {
+                    "name": "CHANNEL",
+                    "value": "STORE_MP"
+                  },
+                  {
+                    "name": "CHANNEL",
+                    "value": "CCA"
+                  },
+                  {
+                    "name": "CHANNEL",
+                    "value": "MYACCOUNT"
+                  }
+                ],
+                "active": true
+              }
+            ]
+          },
+          {
+            "groupName": "WarrantyReturnRules",
+            "priority": 3,
+            "globalPriority": 6,
+            "orderLineLevel": true,
+            "filter": "$.orderProduct.offerAttributes.[?(@.offerType=='CAREPLAN')]",
+            "rules": [
+              {
+                "id": "BLOCK_INDEPENDENT_WARRANTY_RETURN",
+                "name": "BLOCK_INDEPENDENT_WARRANTY_RETURN",
+                "priority": 1,
+                "weight": 60,
+                "ruleClass": "independentWarrantyRuleCondition",
+                "exitOnException": true,
+                "exitGroupOnException": true,
+                "ruleProperties": [
+                  {
+                    "name": "isReturnRule",
+                    "value": "Y"
+                  },
+                  {
+                    "name": "isReplacementRule",
+                    "value": "Y"
+                  },
+                  {
+                    "name": "EXCEPTION_CODE",
+                    "value": "11"
+                  },
+                  {
+                    "name": "EXCEPTION_DESC",
+                    "value": "Independent warranties cannot be returned at store"
+                  },
+                  {
+                    "name": "CHANNEL",
+                    "value": "STORE"
+                  },
+                  {
+                    "name": "CHANNEL",
+                    "value": "STORE_MP"
+                  },
+                  {
+                    "name": "IsCOMS",
+                    "value": "N"
+                  }
+                ],
+                "active": true
+              },
+              {
+                "id": "BLOCK_INDEPENDENT_WARRANTY_RETURN_COMS",
+                "name": "BLOCK_INDEPENDENT_WARRANTY_RETURN_COMS",
+                "priority": 2,
+                "weight": 60,
+                "ruleClass": "independentWarrantyRuleCondition",
+                "exitOnException": true,
+                "exitGroupOnException": true,
+                "ruleProperties": [
+                  {
+                    "name": "isReturnRule",
+                    "value": "Y"
+                  },
+                  {
+                    "name": "isReplacementRule",
+                    "value": "Y"
+                  },
+                  {
+                    "name": "EXCEPTION_CODE",
+                    "value": "29"
+                  },
+                  {
+                    "name": "EXCEPTION_DESC",
+                    "value": "Current OMS Independent warranty returns are blocked from MyAccount"
+                  },
+                  {
+                    "name": "CHANNEL",
+                    "value": "MYACCOUNT"
+                  },
+                  {
+                    "name": "IsCOMS",
+                    "value": "Y"
+                  }
+                ],
+                "active": true
+              },
+              {
+                "id": "BLOCK_LINKED_WARRANTY_RETURN",
+                "name": "BLOCK_LINKED_WARRANTY_RETURN",
+                "priority": 3,
+                "weight": 60,
+                "ruleClass": "linkedWarrantyRuleCondition",
+                "exitOnException": true,
+                "exitGroupOnException": true,
+                "ruleProperties": [
+                  {
+                    "name": "isReturnRule",
+                    "value": "Y"
+                  },
+                  {
+                    "name": "isReplacementRule",
+                    "value": "Y"
+                  },
+                  {
+                    "name": "EXCEPTION_CODE",
+                    "value": "12"
+                  },
+                  {
+                    "name": "EXCEPTION_DESC",
+                    "value": "Linked warranties can be returned only along with product"
+                  },
+                  {
+                    "name": "CHANNEL",
+                    "value": "STORE"
+                  },
+                  {
+                    "name": "CHANNEL",
+                    "value": "STORE_MP"
+                  }
+                ],
+                "active": true
+              },
+              {
+                "id": "BLOCK_WARRANTY_REPLACEMENT",
+                "name": "BLOCK_WARRANTY_REPLACEMENT",
+                "priority": 4,
+                "weight": 60,
+                "ruleClass": "warrantyRuleCondition",
+                "exitOnException": true,
+                "exitGroupOnException": true,
+                "ruleProperties": [
+                  {
+                    "name": "isReturnRule",
+                    "value": "N"
+                  },
+                  {
+                    "name": "isReplacementRule",
+                    "value": "Y"
+                  },
+                  {
+                    "name": "EXCEPTION_CODE",
+                    "value": "16"
+                  },
+                  {
+                    "name": "EXCEPTION_DESC",
+                    "value": "Replacement is not allowed for care plan items"
+                  },
+                  {
+                    "name": "CHANNEL",
+                    "value": "CCA"
+                  },
+                  {
+                    "name": "CHANNEL",
+                    "value": "MYACCOUNT"
+                  }
+                ],
+                "active": true
+              },
+              {
+                "id": "WPP_CHECK_RETURN_WINDOW",
+                "name": "WPP_CHECK_RETURN_WINDOW",
+                "priority": 5,
+                "weight": 60,
+                "ruleClass": "checkReturnWindowRuleCondition",
+                "exitOnException": true,
+                "exitGroupOnException": true,
+                "ruleProperties": [
+                  {
+                    "name": "isReturnRule",
+                    "value": "Y"
+                  },
+                  {
+                    "name": "isReplacementRule",
+                    "value": "N"
+                  },
+                  {
+                    "name": "EXCEPTION_CODE",
+                    "value": "01"
+                  },
+                  {
+                    "name": "EXCEPTION_DESC",
+                    "value": "Return Window is closed"
+                  },
+                  {
+                    "name": "CHANNEL",
+                    "value": "CCA"
+                  },
+                  {
+                    "name": "CHANNEL",
+                    "value": "MYACCOUNT"
+                  },
+                  {
+                    "name": "CHANNEL",
+                    "value": "STORE"
+                  },
+                  {
+                    "name": "DEFAULT_RETURN_WINDOW",
+                    "value": "90"
+                  },
+                  {
+                    "name": "EXTENDED_HOLIDAY_RETURN_WINDOW",
+                    "value": "90"
+                  },
+                  {
+                    "name": "HOLIDAY_WINDOW_START_DATE",
+                    "value": "2017-10-28"
+                  },
+                  {
+                    "name": "HOLIDAY_WINDOW_END_DATE",
+                    "value": "2017-12-25"
+                  }
+                ],
+                "active": true
+              }
+            ]
+          },
+          {
+            "groupName": "ItemBasedReturnRules",
+            "priority": 4,
+            "globalPriority": 7,
+            "orderLineLevel": true,
+            "filter": "",
+            "rules": [
+              {
+                "id": "BLOCK_REPLACEMENT_FOR_WEIGHT_70LB",
+                "name": "BLOCK_REPLACEMENT_FOR_WEIGHT_70LB",
+                "priority": 8,
+                "weight": 70,
+                "ruleClass": "itemWeightRuleCondition",
+                "exitOnException": true,
+                "exitGroupOnException": true,
+                "ruleProperties": [
+                  {
+                    "name": "isReturnRule",
+                    "value": "N"
+                  },
+                  {
+                    "name": "isReplacementRule",
+                    "value": "Y"
+                  },
+                  {
+                    "name": "EXCEPTION_CODE",
+                    "value": "45"
+                  },
+                  {
+                    "name": "EXCEPTION_DESC",
+                    "value": "Replacement is blocked for items more than 70LB"
+                  },
+                  {
+                    "name": "CHANNEL",
+                    "value": "MYACCOUNT"
+                  },
+                  {
+                    "name": "lowerWeightLimit",
+                    "value": "0"
+                  },
+                  {
+                    "name": "higherWeightLimit",
+                    "value": "70"
+                  }
+                ],
+                "active": false
+              },
+              {
+                "id": "BLOCK_RETURN_REPLACEMENT_BY_WEIGHT",
+                "name": "BLOCK_RETURN_REPLACEMENT_BY_WEIGHT",
+                "priority": 9,
+                "weight": 70,
+                "ruleClass": "itemWeightRuleCondition",
+                "exitOnException": true,
+                "exitGroupOnException": true,
+                "ruleProperties": [
+                  {
+                    "name": "isReturnRule",
+                    "value": "Y"
+                  },
+                  {
+                    "name": "isReplacementRule",
+                    "value": "Y"
+                  },
+                  {
+                    "name": "EXCEPTION_CODE",
+                    "value": "46"
+                  },
+                  {
+                    "name": "EXCEPTION_DESC",
+                    "value": "returns and replacement is not allowed for items more than 70LB and less than 150LB"
+                  },
+                  {
+                    "name": "CHANNEL",
+                    "value": "MYACCOUNT"
+                  },
+                  {
+                    "name": "lowerWeightLimit",
+                    "value": "70"
+                  },
+                  {
+                    "name": "higherWeightLimit",
+                    "value": "150"
+                  }
+                ],
+                "active": false
+              },
+              {
+                "id": "BLOCK_RETURN_REPLACEMENT_BY_HAZMAT",
+                "name": "BLOCK_RETURN_REPLACEMENT_BY_HAZMAT",
+                "priority": 10,
+                "weight": 70,
+                "ruleClass": "itemHazmatRuleCondition",
+                "exitOnException": true,
+                "exitGroupOnException": true,
+                "ruleProperties": [
+                  {
+                    "name": "isReturnRule",
+                    "value": "Y"
+                  },
+                  {
+                    "name": "isReplacementRule",
+                    "value": "Y"
+                  },
+                  {
+                    "name": "EXCEPTION_CODE",
+                    "value": "47"
+                  },
+                  {
+                    "name": "EXCEPTION_DESC",
+                    "value": "Return and replacement is not allowed for Hazmat items"
+                  },
+                  {
+                    "name": "CHANNEL",
+                    "value": "MYACCOUNT"
+                  },
+                  {
+                    "name": "hazmatcodes",
+                    "value": "R1,R2,R3,R4,R5,R6,R7,R8,R9,R10,R11,R12"
+                  },
+                  {
+                    "name": "batteryhazmatcodes",
+                    "value": "R13,R14"
+                  }
+                ],
+                "active": true
+              }
+            ]
+          },
+          {
+            "groupName": "HomeServiceReturnRules",
+            "priority": 5,
+            "globalPriority": 8,
+            "orderLineLevel": true,
+            "filter": "$.orderProduct.offerAttributes.[?(@.offerType=='HOME_SERVICE')]",
+            "rules": [
+              {
+                "id": "BLOCK_INDEPENDENT_HOME_SERVICE_RETURN",
+                "name": "BLOCK_INDEPENDENT_HOME_SERVICE_RETURN",
+                "priority": 1,
+                "weight": 60,
+                "ruleClass": "independentHomeServiceRuleCondition",
+                "exitOnException": true,
+                "exitGroupOnException": true,
+                "ruleProperties": [
+                  {
+                    "name": "isReturnRule",
+                    "value": "Y"
+                  },
+                  {
+                    "name": "isReplacementRule",
+                    "value": "Y"
+                  },
+                  {
+                    "name": "EXCEPTION_CODE",
+                    "value": "61"
+                  },
+                  {
+                    "name": "EXCEPTION_DESC",
+                    "value": "Independent Home Service items cannot be returned at store"
+                  },
+                  {
+                    "name": "CHANNEL",
+                    "value": "STORE"
+                  },
+                  {
+                    "name": "CHANNEL",
+                    "value": "STORE_MP"
+                  },
+                  {
+                    "name": "IsCOMS",
+                    "value": "N"
+                  }
+                ],
+                "active": true
+              },
+              {
+                "id": "BLOCK_LINKED_HOME_SERVICE_RETURN",
+                "name": "BLOCK_LINKED_HOME_SERVICE_RETURN",
+                "priority": 3,
+                "weight": 60,
+                "ruleClass": "linkedHomeServiceRuleCondition",
+                "exitOnException": true,
+                "exitGroupOnException": true,
+                "ruleProperties": [
+                  {
+                    "name": "isReturnRule",
+                    "value": "Y"
+                  },
+                  {
+                    "name": "isReplacementRule",
+                    "value": "Y"
+                  },
+                  {
+                    "name": "EXCEPTION_CODE",
+                    "value": "62"
+                  },
+                  {
+                    "name": "EXCEPTION_DESC",
+                    "value": "Linked Home Service items can be returned only along with product"
+                  },
+                  {
+                    "name": "CHANNEL",
+                    "value": "STORE"
+                  },
+                  {
+                    "name": "CHANNEL",
+                    "value": "STORE_MP"
+                  }
+                ],
+                "active": true
+              },
+              {
+                "id": "BLOCK_HOME_SERVICE_REPLACEMENT",
+                "name": "BLOCK_HOME_SERVICE_REPLACEMENT",
+                "priority": 4,
+                "weight": 60,
+                "ruleClass": "homeServiceRuleCondition",
+                "exitOnException": true,
+                "exitGroupOnException": true,
+                "ruleProperties": [
+                  {
+                    "name": "isReturnRule",
+                    "value": "N"
+                  },
+                  {
+                    "name": "isReplacementRule",
+                    "value": "Y"
+                  },
+                  {
+                    "name": "EXCEPTION_CODE",
+                    "value": "63"
+                  },
+                  {
+                    "name": "EXCEPTION_DESC",
+                    "value": "Replacement is not allowed for Home Service items"
+                  },
+                  {
+                    "name": "CHANNEL",
+                    "value": "CCA"
+                  },
+                  {
+                    "name": "CHANNEL",
+                    "value": "MYACCOUNT"
+                  }
+                ],
+                "active": true
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
